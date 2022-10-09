@@ -1,4 +1,5 @@
- 
+ ![image of preview](./docker.png?raw=true "Hero preview image")
+
 Quick Intro
 The term docker is a revolution in the IT-infrastructure, Docker was introduced in 2013 to the real world. It gained popularity around the globe mainly in a couple of years and nowadays every organization is implementing the concepts of containerization and deploying the docker containers to DockerHub.
 So, what exactly is Docker?
@@ -30,36 +31,13 @@ When running the node project, we want to specify the port we want to be listeni
 this is done with the ENV command; ENV PORT=5000 (or whatever port you want to be using) and EXPOSE 5000, which will define the network port. 
 Lastly we have CMD. This is the one we use to tell docker how to actually start the program. CMD takes an array of commands like: CMD [“npm”, “start”]
 
+![image of preview](./pic1.png?raw=true "Hero preview image")
 
 So, what now?
 To build the docker image, type docker build in the Terminal. There are alot of different tags to add to this command. The -t tag lets you name your docker image to whatever you want, making it easier to remember and to access later. 
 
 To run the container you can use the command docker run in the terminal, followed by the id or tag name. To access the project on our localhost, we can pass a -p tag like this: docker run -p 8080:5000 . This tells docker to bind the container’s port 5000 to the host’s port 8080. 
-Docker command glossary
-Command
-Description
-Example
-FROM
-Sets the base image for Docker to work from.
-FROM node:12
-WORKDIR
-Specifying the working directory where we want the subsequent ADD, COPY, RUN, CMD or ENTRYPOINT instructions to run.
-WORKDIR /app
-COPY
-Takes two arguments; the file(s), and the location to be copied to.
-COPY package*.json ./
-RUN
-Runs the following commands.
-RUN npm install
-ENV
-Sets the environmental values.
-ENV PORT=5000
-EXPOSE
-Defines the network port.
-EXPOSE 5000
-CMD
-Takes an array of commands for docker to run.
-CMD [“npm”, “start”]
+![image of preview](./pic2.png?raw=true "Hero preview image")
 
 
 Dockerizing Sample web application with ASP.NET
@@ -72,16 +50,8 @@ If you now run “dotnet run” inside the WebApp.App directory, a web server wi
 For containerizing the above application, we need to create a “dockerfile”. At the root level of the project create a file with a name Dockerfile and paste the below code in the docker file.
 
 Sample docker file for ASP.NET core web app runs on dotnet version 5.0
+![image of preview](./pic3.png?raw=true "Hero preview image")
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /source
-COPY . .
-RUN dotnet publish -c release -o /app
- 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
-WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "MyWebApp.App.dll"]
 
 The above docker file will create two docker images, first one contains dotnet sdk and another one with source code. To build the container run the command at the root of the project.
 
