@@ -37,6 +37,7 @@ So, what now?
 To build the docker image, type docker build in the Terminal. There are alot of different tags to add to this command. The -t tag lets you name your docker image to whatever you want, making it easier to remember and to access later. 
 
 To run the container you can use the command docker run in the terminal, followed by the id or tag name. To access the project on our localhost, we can pass a -p tag like this: docker run -p 8080:5000 . This tells docker to bind the container’s port 5000 to the host’s port 8080. 
+
 ![image of preview](./pic2.png?raw=true "Hero preview image")
 
 
@@ -50,8 +51,8 @@ If you now run “dotnet run” inside the WebApp.App directory, a web server wi
 For containerizing the above application, we need to create a “dockerfile”. At the root level of the project create a file with a name Dockerfile and paste the below code in the docker file.
 
 Sample docker file for ASP.NET core web app runs on dotnet version 5.0
-![image of preview](./pic3.png?raw=true "Hero preview image")
 
+![image of preview](./pic3.png?raw=true "Hero preview image")
 
 The above docker file will create two docker images, first one contains dotnet sdk and another one with source code. To build the container run the command at the root of the project.
 
